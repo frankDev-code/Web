@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ofisistemas</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Ofisistemas</div>
+        <nav>
+            <ul>
+                <li><a href="#hero"><i class="fas fa-network-wired"></i> Redes</a></li>
+                <li><a href="#sales"><i class="fas fa-shopping-cart"></i> Venta</a></li>
+                <li><a href="#maintenance"><i class="fas fa-tools"></i> Mantenimiento</a></li>
+                <li><a href="#software"><i class="fas fa-code"></i> Software</a></li>
+                <li>
+                    <button id="theme-toggle" aria-label="Toggle dark mode">
+                        <i class="fas fa-sun"></i>
+                    </button>
+                </li>
+                <li>
+                    <input type="text" id="search-bar" placeholder="Buscar...">
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero" class="hero">
+        <h1>Bienvenido a Ofisistemas</h1>
+        <p>Soluciones innovadoras en redes, venta, mantenimiento y desarrollo de software.</p>
+        <a href="#sales">Explorar servicios</a>
+    </section>
+
+    <section id="sales" class="cards">
+        <div class="card">
+            <i class="fas fa-desktop"></i>
+            <h3>Venta de Equipos</h3>
+            <p>Ofrecemos equipos tecnológicos de última generación.</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-network-wired"></i>
+            <h3>Redes</h3>
+            <p>Diseño e implementación de redes empresariales y domésticas.</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-tools"></i>
+            <h3>Mantenimiento</h3>
+            <p>Reparación y mantenimiento de equipos tecnológicos.</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-code"></i>
+            <h3>Software</h3>
+            <p>Desarrollo de soluciones de software personalizadas.</p>
+        </div>
+    </section>
+
+
+    <footer>
+        <p>&copy; 2024 Ofisistemas. Todos los derechos reservados.</p>
+        <div class="socials">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        const searchBar = document.getElementById('search-bar');
+        const links = document.querySelectorAll('nav ul li a');
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            const icon = themeToggle.querySelector('i');
+            if (body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            } else {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            }
+        });
+
+        searchBar.addEventListener('input', (event) => {
+            const query = event.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.card');
+
+            cards.forEach(card => {
+                const text = card.innerText.toLowerCase();
+                card.style.display = text.includes(query) ? 'block' : 'none';
+            });
+        });
+
+        links.forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
